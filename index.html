@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Single-player Nokia 1100-era Snake game. Play in your browser." />
+    <title>Nokia Snake</title>
+  </head>
+  <body>
+    <div class="phone">
+      <header class="phone-header">
+        <p class="brand">NOKIA-style</p>
+        <h1>SNAKE</h1>
+        <p class="tagline">1100 edition</p>
+      </header>
+
+      <main id="main">
+        <section
+          id="screen-welcome"
+          class="screen"
+          aria-labelledby="welcome-heading"
+          tabindex="-1"
+        >
+          <h2 id="welcome-heading">Welcome</h2>
+          <p>Eat, grow, and do not bite yourself. Good luck.</p>
+          <button type="button" data-goto="menu">Continue</button>
+        </section>
+
+        <nav
+          id="screen-menu"
+          class="screen"
+          aria-labelledby="menu-heading"
+          tabindex="-1"
+          hidden
+        >
+          <h2 id="menu-heading">Main menu</h2>
+          <ul class="menu-list">
+            <li><button type="button" data-action="start">Start game</button></li>
+            <li><button type="button" data-goto="difficulty">Difficulty</button></li>
+            <li><button type="button" data-goto="high-scores">High scores</button></li>
+          </ul>
+        </nav>
+
+        <section
+          id="screen-difficulty"
+          class="screen"
+          aria-labelledby="difficulty-heading"
+          tabindex="-1"
+          hidden
+        >
+          <h2 id="difficulty-heading">Difficulty</h2>
+          <ul class="menu-list" aria-label="Difficulty options">
+            <li><button type="button" data-difficulty="easy" aria-pressed="false">Easy</button></li>
+            <li><button type="button" data-difficulty="normal" aria-pressed="true">Normal</button></li>
+            <li><button type="button" data-difficulty="hard" aria-pressed="false">Hard</button></li>
+          </ul>
+          <div class="row">
+            <button type="button" data-goto="playing">Play</button>
+            <button type="button" data-goto="menu">Back</button>
+          </div>
+        </section>
+
+        <section
+          id="screen-playing"
+          class="screen"
+          aria-labelledby="playing-heading"
+          tabindex="-1"
+          hidden
+        >
+          <h2 id="playing-heading" class="visually-hidden">Playing</h2>
+          <p class="score-line">Score <strong id="score-value">0</strong></p>
+          <div class="lcd" aria-label="Game display">
+            <canvas
+              id="game-board"
+              width="240"
+              height="240"
+              role="img"
+              aria-label="Snake game board"
+            >
+              <p>Your browser does not support Canvas, which Snake needs for its game board.</p>
+            </canvas>
+          </div>
+          <div class="row">
+            <button type="button" data-action="pause">Pause</button>
+            <button type="button" data-action="end">End game</button>
+          </div>
+        </section>
+
+        <section
+          id="screen-paused"
+          class="screen"
+          aria-labelledby="pause-heading"
+          tabindex="-1"
+          hidden
+        >
+          <h2 id="pause-heading">Paused</h2>
+          <p>Take a breath. The snake waits.</p>
+          <ul class="menu-list">
+            <li><button type="button" data-action="resume">Resume</button></li>
+            <li><button type="button" data-action="restart">Start new game</button></li>
+            <li><button type="button" data-goto="menu">Quit to menu</button></li>
+          </ul>
+        </section>
+
+        <section
+          id="screen-gameover"
+          class="screen"
+          aria-labelledby="gameover-heading"
+          tabindex="-1"
+          hidden
+        >
+          <h2 id="gameover-heading">Game over</h2>
+          <p>Final score: <strong>0</strong> (placeholder).</p>
+          <ul class="menu-list">
+            <li><button type="button" data-action="restart">Play again</button></li>
+            <li><button type="button" data-goto="high-scores">High scores</button></li>
+            <li><button type="button" data-goto="menu">Main menu</button></li>
+          </ul>
+        </section>
+
+        <section
+          id="screen-scores"
+          class="screen"
+          aria-labelledby="scores-heading"
+          tabindex="-1"
+          hidden
+        >
+          <h2 id="scores-heading">High scores</h2>
+          <ol id="scores-list"></ol>
+          <p class="empty" id="scores-empty">No scores yet. Play your first game!</p>
+          <button type="button" data-goto="menu">Back to menu</button>
+        </section>
+      </main>
+
+      <footer class="phone-footer">
+        <p>Local play only. No accounts, no network.</p>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

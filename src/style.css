@@ -1,0 +1,239 @@
+/* Nokia 1100-inspired theme: monochrome green LCD, system fonts only. */
+
+:root {
+  --page: #1c2210;
+  --shell: #39411f;
+  --ink: #1a230f;
+  --lcd-bg: #9ead5f;
+  --lcd-hi: #d7e29b;
+  --lcd-line: #43511c;
+  --panel: #c2cf82;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-lg) var(--space-md) 2rem;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.phone {
+  width: min(100%, 28rem);
+  margin-inline: auto;
+  background: var(--shell);
+  border: 4px solid var(--ink);
+  border-radius: 1.25rem;
+  padding: var(--space-lg);
+}
+
+.phone-header {
+  text-align: center;
+  color: var(--lcd-hi);
+}
+
+.phone-header .brand {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.phone-header h1 {
+  margin: 0.25rem 0 0;
+  font-size: 2.25rem;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+}
+
+.phone-header .tagline {
+  margin: 0.25rem 0 var(--space-lg);
+  font-size: 0.8rem;
+}
+
+main {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.screen {
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: var(--space-md);
+  display: grid;
+  gap: var(--space-sm);
+  align-content: start;
+}
+
+.screen[hidden] {
+  display: none !important;
+}
+
+.screen h2 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.screen p {
+  margin: 0;
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.menu-list li {
+  margin: 0;
+}
+
+.score-line {
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.lcd {
+  background: var(--lcd-bg);
+  border: 3px solid var(--ink);
+  padding: var(--space-sm);
+}
+
+#game-board {
+  display: block;
+  width: min(100%, 20rem, 52svh);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin-inline: auto;
+  background: var(--lcd-bg);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 11px,
+      rgba(26, 35, 15, 0.12) 11px 12px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 11px,
+      rgba(26, 35, 15, 0.12) 11px 12px
+    );
+  border: 4px solid var(--ink);
+  image-rendering: pixelated;
+}
+
+.row {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.row button {
+  flex: 1 1 8rem;
+}
+
+button {
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--lcd-hi);
+  border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 0.5rem 0.9rem;
+  min-height: 3rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e6efb8;
+}
+
+button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--lcd-hi);
+}
+
+button:focus-visible,
+a:focus-visible,
+canvas:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 2px;
+}
+
+.empty {
+  font-size: 0.9rem;
+}
+
+#scores-list {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+#scores-list:empty {
+  display: none;
+}
+
+.phone-footer {
+  margin-top: var(--space-md);
+  text-align: center;
+  color: var(--lcd-hi);
+  font-size: 0.75rem;
+}
+
+.phone-footer p {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
